@@ -1,3 +1,3 @@
 import * as React from 'react';
 
-export const App = () => (<div>Hello World!</div>)
+export const App = () => (<div>Auto deployed</div>)
