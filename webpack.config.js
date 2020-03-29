@@ -2,6 +2,8 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
 
 module.exports = {
   entry: './src/index.ts',
@@ -32,6 +34,9 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
+    new CopyPlugin([
+        { from: path.join(__dirname, '.config/netlify') }
+    ])
   ],
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
