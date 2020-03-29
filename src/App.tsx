@@ -1,4 +1,5 @@
 import * as React from 'react';
-import { RouteConteiner } from './routes/router';
+import { RouteContainer } from './routes/router';
+import { WithHistoryProps } from './types';
 
-export const App = () => (<RouteConteiner />)
+export const App = ({ history }: WithHistoryProps) => (<RouteContainer history={history} />)

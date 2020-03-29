@@ -1,12 +1,27 @@
 import * as React from 'react';
 import { render } from 'react-dom';
+import { createBrowserHistory, History } from 'history';
+import { WithHistoryProps } from './types';
 
-export const bootstrap = (App: React.ComponentType<{}>) => {
+declare const process: {
+    env: 'development' | 'production';
+}
+
+
+export async function bootstrap(App: React.ComponentType<WithHistoryProps>): Promise<void> {
+    const history = createBrowserHistory();
     const rootEl = document.createElement('div');
     document.body.appendChild(rootEl);
 
-    return render(
-        <App />,
+    if (process.env === 'development') {
+        const { hot } = await import(/* webpackChunkName: "hot-loader" */ 'react-hot-loader/root');
+        
+        const HotApp = hot(App);
+        await render(<HotApp history={history} />, rootEl);
+    }
+
+    await render(
+        <App history={history} />,
         rootEl,
     )
 }

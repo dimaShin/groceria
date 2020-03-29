@@ -1,14 +1,11 @@
 import * as React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-  } from "react-router-dom";
-  import { ShoppingListPage } from '../pages/shopping-list';
+import { Router, Route, Switch, Redirect } from 'react-router';
 
-  export const RouteConteiner: React.FunctionComponent = () => (
-    <Router>
+  import { ShoppingListPage } from '../pages/shopping-list';
+import { WithHistoryProps } from '../types';
+
+  export const RouteContainer: React.FunctionComponent<WithHistoryProps> = ({ history }) => (
+    <Router history={history}>
         <Switch>
           <Route path="/list">
             <ShoppingListPage />
