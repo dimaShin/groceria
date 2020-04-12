@@ -1,7 +1,6 @@
 import { History } from 'history';
 import { RouterStore } from './router-store';
 import { ProductsStore } from './products-store';
-import { ProductModel } from '../models/Product';
 
 export const STORES = {
     ROUTER: 'routerStore',
@@ -18,12 +17,7 @@ export type WithRouterStore = {
 
 export function createStores(history: History) {
     const routerStore = new RouterStore(history);
-    const productsStore = new ProductsStore([
-        new ProductModel('Milk'),
-        new ProductModel('Eggs'),
-        new ProductModel('Car'),
-        new ProductModel('Appartments'),
-    ])
+    const productsStore = new ProductsStore()
     return {
         [STORES.ROUTER]: routerStore,
         [STORES.PRODUCTS]: productsStore,

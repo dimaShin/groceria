@@ -19,7 +19,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'bundle.js',
@@ -27,7 +27,7 @@ module.exports = {
   },
   optimization: {
     splitChunks: {
-        chunks: 'all',
+      chunks: 'all',
     },
   },
   plugins: [
@@ -35,7 +35,7 @@ module.exports = {
     new HtmlWebpackPlugin(),
     new webpack.EnvironmentPlugin(['NODE_ENV']),
     new CopyPlugin([
-        { from: path.join(__dirname, '.config/netlify') }
+      { from: path.join(__dirname, '.config/netlify') }
     ])
   ],
   devServer: {

@@ -5,9 +5,15 @@ import { ShoppingList } from '../components/shopping-list';
 
 export type ShoppingListPageComponentProps = WithProductsStore;
 
-const ShoppingListPageComponent: React.FunctionComponent<ShoppingListPageComponentProps> = ({ productsStore }) => (
-    <ShoppingList data={productsStore.data} toggleDone={productsStore.toggleDone} />
-);
+const ShoppingListPageComponent: React.FunctionComponent<ShoppingListPageComponentProps> = ({ productsStore }) => {
+    React.useEffect(() => {
+        productsStore.sync();
+    }, []);
+
+    return (
+        <ShoppingList data={productsStore.data} toggleDone={productsStore.toggleDone} />
+    );
+}
 
 // @ts-ignore
 export const ShoppingListPage = inject(STORES.PRODUCTS)<WithProductsStore>(observer(ShoppingListPageComponent)) as React.FunctionComponent;

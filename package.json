@@ -26,6 +26,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "firebase": "^7.14.0",
     "history": "^4.10.1",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.8",

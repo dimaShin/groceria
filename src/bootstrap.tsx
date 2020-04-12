@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { createBrowserHistory, History } from 'history';
+import { createBrowserHistory } from 'history';
 import { WithHistoryProps } from './types';
 
 declare const process: {
@@ -15,7 +15,7 @@ export async function bootstrap(App: React.ComponentType<WithHistoryProps>): Pro
 
     if (process.env === 'development') {
         const { hot } = await import(/* webpackChunkName: "hot-loader" */ 'react-hot-loader/root');
-        
+
         const HotApp = hot(App);
         await render(<HotApp history={history} />, rootEl);
     }
