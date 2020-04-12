@@ -9,17 +9,17 @@ export type Product = {
 }
 
 export class ProductsStore {
-    constructor(products?: ProductModel[]) {
-        this.data = products || [];
-    }
+    private db = () => firebaseAdapter.database();
 
-    @observable public data: ProductModel[];
+    @observable public data: ProductModel[] = [];
 
     @action
     toggleDone = (id: string): void => {
         this.data = this.data.map((product) => {
             if (product.id === id) {
                 product.done = !product.done;
+                const dataRef = this.db().ref(`products/${product.id}`);
+                dataRef.update({ done: product.done });
             }
             return product;
         });
@@ -27,13 +27,12 @@ export class ProductsStore {
 
     @action
     sync = async (): Promise<void> => {
-        const dataRef = firebaseAdapter.database().ref("products");
+        const dataRef = this.db().ref("products");
 
         dataRef.on('value', snapshot => {
             console.log('snapshot: ', snapshot.toJSON());
             const products = (snapshot.toJSON() || {} as Record<string, Product>);
             this.data = Object.entries(products).map(([id, { label, done }]) => new ProductModel({ id, name: label, done }))
-        })
-
+        });
     }
 }
