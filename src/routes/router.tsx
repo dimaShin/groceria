@@ -7,11 +7,11 @@ import { WithHistoryProps } from '../types';
 export const RouteContainer: React.FunctionComponent<WithHistoryProps> = ({ history }) => (
   <Router history={history}>
     <Switch>
-      <Route path="/list">
+      <Route path="/">
         <React.Suspense fallback={<p>LOading...</p>}><ShoppingListPage /></React.Suspense>
       </Route>
       <Route path="*">
-        <Redirect to="/list" />
+        <Redirect to="/" />
       </Route>
     </Switch>
   </Router>
