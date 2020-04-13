@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable } from 'mobx';
 
 export class ProductModel {
     readonly id: string;
@@ -9,11 +9,6 @@ export class ProductModel {
         this.id = id || ProductModel.generateId();
         this.name = name || '';
         this.done = done;
-    }
-
-    @action
-    toggle() {
-        this.done = !this.done;
     }
 
     static nextId = 1;

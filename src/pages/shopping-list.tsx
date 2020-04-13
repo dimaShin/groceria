@@ -11,7 +11,7 @@ const ShoppingListPageComponent: React.FunctionComponent<ShoppingListPageCompone
     }, []);
 
     return (
-        <ShoppingList data={productsStore.data} toggleDone={productsStore.toggleDone} />
+        <ShoppingList data={productsStore.data} toggleDone={productsStore.toggleDone} update={productsStore.updateName} />
     );
 }
 

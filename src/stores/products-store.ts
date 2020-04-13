@@ -26,6 +26,18 @@ export class ProductsStore {
     };
 
     @action
+    updateName(id: string, name: string) {
+        this.data = this.data.map((product) => {
+            if (product.id === id) {
+                product.name = name;
+                const dataRef = this.db().ref(`products/${product.id}`);
+                dataRef.update({ label: name });
+            }
+            return product;
+        });
+    }
+
+    @action
     sync = async (): Promise<void> => {
         const dataRef = this.db().ref("products");
 

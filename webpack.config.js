@@ -42,6 +42,7 @@ module.exports = {
     contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: process.env.PORT || 8080,
+    host: '0.0.0.0',
     historyApiFallback: true,
   }
 };
