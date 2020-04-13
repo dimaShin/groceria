@@ -6,7 +6,6 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server",
     "dev": "run-p --print-label start test:watch",
-    "build": "tsc",
     "bundle": "webpack",
     "test": "jest",
     "test:watch": "jest --watch"
